@@ -1,0 +1,811 @@
+/* Invitación Primera Comunión de Mia — estilos */
+:root {
+  --radius: 0.625rem;
+  --background: #faf5ea;
+  --foreground: #4a463c;
+  --card: rgba(255, 253, 248, 0.75);
+  --card-foreground: #4a463c;
+  --primary: #b3924f;
+  --primary-foreground: #faf5ea;
+  --secondary: #f7f2e7;
+  --secondary-foreground: #4a463c;
+  --muted: #f7f2e7;
+  --muted-foreground: #8a8272;
+  --accent: #dfe7f2;
+  --accent-foreground: #4a463c;
+  --border: rgba(228, 211, 169, 0.6);
+  --input: rgba(228, 211, 169, 0.6);
+  --ring: #b3924f;
+
+  --bg: #faf5ea;
+  --ink: #4a463c;
+  --ink-soft: #8a8272;
+  --gold: #b3924f;
+  --gold-soft: #e4d3a9;
+  --card-invite: rgba(255, 253, 248, 0.75);
+  --muted-invite: rgba(247, 242, 231, 0.75);
+  --sky: #cddcee;
+  --accent-invite: #dfe7f2;
+}
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "Montserrat", ui-sans-serif, sans-serif;
+    font-weight: 300;
+    color: var(--ink);
+    background-color: var(--bg);
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+.invite-bg {
+  position: relative;
+  overflow-x: hidden;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+
+.font-script {
+  font-family: "Alex Brush", cursive;
+}
+
+.font-serif {
+  font-family: "Cormorant Garamond", serif;
+}
+
+.text-gold {
+  color: var(--gold);
+}
+
+.soft {
+  color: var(--ink-soft);
+}
+
+.upper {
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+}
+
+main {
+  position: relative;
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 3.5rem 1.25rem 4rem;
+  z-index: 1;
+}
+
+@media (min-width: 640px) {
+  main {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Flores decorativas */
+.floral {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.9;
+}
+
+.floral.tl {
+  left: -2.5rem;
+  top: -2.5rem;
+  width: 14rem;
+}
+
+.floral.mr {
+  right: -2.5rem;
+  top: 33%;
+  width: 10rem;
+  transform: rotate(90deg);
+  opacity: 0.6;
+}
+
+.floral.br {
+  right: -2.5rem;
+  bottom: -3rem;
+  width: 13rem;
+  transform: rotate(180deg);
+  opacity: 0.8;
+}
+
+@media (min-width: 640px) {
+  .floral.tl {
+    width: 20rem;
+  }
+
+  .floral.mr {
+    width: 16rem;
+  }
+
+  .floral.br {
+    width: 20rem;
+  }
+}
+
+/* Pétalos flotantes */
+.petals {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.petal {
+  position: absolute;
+  bottom: 0;
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: float-up linear infinite;
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translateY(-120px) scale(0.6);
+    opacity: 0;
+  }
+}
+
+/* Ornamento con líneas doradas */
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+}
+
+.gold-rule {
+  height: 1px;
+  width: 4rem;
+  background: linear-gradient(90deg, transparent, var(--gold-soft), var(--gold), var(--gold-soft), transparent);
+}
+
+@media (min-width: 640px) {
+  .gold-rule {
+    width: 6rem;
+  }
+}
+
+/* Tarjetas */
+.card {
+  border-radius: 1.5rem;
+  border: 1px solid rgba(228, 211, 169, 0.6);
+  background: var(--card-invite);
+  padding: 1.75rem;
+  box-shadow: 0 18px 50px -30px rgba(150, 120, 60, 0.45);
+  backdrop-filter: blur(8px);
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .card {
+    padding: 2.25rem;
+  }
+}
+
+.card.accent {
+  border-color: rgba(179, 146, 79, 0.6);
+  background: rgba(223, 231, 242, 0.35);
+}
+
+section {
+  margin-top: 4rem;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.reveal.shown {
+  opacity: 1;
+  transform: none;
+}
+
+/* Portada */
+header {
+  text-align: center;
+  animation: fade-rise 1s ease-out both;
+}
+
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.kicker {
+  font-size: 0.7rem;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+h1 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  font-size: 1.5rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+@media (min-width: 640px) {
+  h1 {
+    font-size: 1.875rem;
+  }
+}
+
+.nombre {
+  font-size: 4.5rem;
+  line-height: 1;
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .nombre {
+    font-size: 6rem;
+  }
+}
+
+.ovalo {
+  position: relative;
+  height: 16rem;
+  width: 13rem;
+  margin: 2rem auto 0;
+}
+
+@media (min-width: 640px) {
+  .ovalo {
+    height: 20rem;
+    width: 16rem;
+  }
+}
+
+.ovalo .borde {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(179, 146, 79, 0.5);
+}
+
+.ovalo .interno {
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-soft);
+  background: var(--muted-invite);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.ovalo img {
+  width: 8rem;
+  opacity: 0.8;
+  animation: soft-pulse 4s ease-in-out infinite;
+}
+
+@media (min-width: 640px) {
+  .ovalo img {
+    width: 10rem;
+  }
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+}
+
+.fecha {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  border: 1px solid var(--gold-soft);
+  background: var(--card-invite);
+  backdrop-filter: blur(8px);
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+}
+
+.fecha .grande {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.875rem;
+  color: var(--gold);
+}
+
+.fecha .chica {
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* Cuenta regresiva */
+.grid4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .grid4 {
+    gap: 1rem;
+  }
+}
+
+.celda {
+  border: 1px solid rgba(228, 211, 169, 0.7);
+  background: rgba(247, 242, 231, 0.6);
+  border-radius: 1rem;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.celda .num {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.875rem;
+  color: var(--gold);
+}
+
+@media (min-width: 640px) {
+  .celda .num {
+    font-size: 2.25rem;
+  }
+}
+
+.celda .lbl {
+  margin-top: 0.25rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* Cita */
+blockquote {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.625;
+  color: rgba(74, 70, 60, 0.85);
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  blockquote {
+    font-size: 1.5rem;
+  }
+}
+
+cite {
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  font-style: normal;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+h2.script {
+  font-size: 2.25rem;
+  line-height: 1.15;
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  h2.script {
+    font-size: 2.75rem;
+  }
+}
+
+
+.detalle {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.125rem;
+  color: rgba(74, 70, 60, 0.8);
+  max-width: 20rem;
+  margin: 1.25rem auto 0;
+  line-height: 1.5;
+}
+
+/* Botones */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  border-radius: 9999px;
+  padding: 0 2.5rem;
+  margin-top: 1.75rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-linea {
+  border: 1px solid var(--gold);
+  color: var(--gold);
+}
+
+.btn-linea:hover {
+  background: var(--gold);
+  color: #faf5ea;
+}
+
+.btn-oro {
+  background: var(--gold);
+  color: #faf5ea;
+  box-shadow: 0 14px 35px -18px rgba(150, 120, 60, 0.9);
+}
+
+.btn-oro:hover {
+  transform: scale(1.03);
+}
+
+/* Caja de datos bancarios */
+.datos {
+  max-width: 20rem;
+  margin: 1.5rem auto 0;
+  border: 1px solid rgba(228, 211, 169, 0.7);
+  background: rgba(247, 242, 231, 0.6);
+  border-radius: 1rem;
+  padding: 1.25rem 1.5rem;
+}
+
+.datos .etq {
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.datos .alias {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  color: var(--gold);
+  margin-top: 0.25rem;
+}
+
+.datos .sep {
+  height: 1px;
+  width: 5rem;
+  margin: 1rem auto 0;
+  background: linear-gradient(90deg, transparent, var(--gold-soft), var(--gold), var(--gold-soft), transparent);
+}
+
+.datos .banco {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.125rem;
+  color: rgba(74, 70, 60, 0.85);
+  margin-top: 0.25rem;
+}
+
+/* Galería */
+.galeria {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+@media (min-width: 640px) {
+  .galeria {
+    gap: 1rem;
+  }
+}
+
+.foto {
+  aspect-ratio: 3 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--gold-soft);
+  background: rgba(247, 242, 231, 0.7);
+  border-radius: 1rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  overflow: hidden;
+}
+
+.foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+footer {
+  margin-top: 4rem;
+  text-align: center;
+}
+
+footer .frase {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 1.125rem;
+  line-height: 1.625;
+  color: rgba(74, 70, 60, 0.8);
+  max-width: 24rem;
+  margin: 0 auto;
+}
+
+footer .firma {
+  font-size: 3rem;
+  margin-top: 1rem;
+}
+
+footer .cierre {
+  margin-top: 1.5rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.texto-centro {
+  text-align: center;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mt-5 {
+  margin-top: 1.25rem;
+}
+
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
+.texto-nota {
+  margin-top: 1.25rem;
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.sub-rsvp {
+  max-width: 24rem;
+  margin: 0.75rem auto 0;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: var(--ink-soft);
+}
+
+.sub-rsvp strong {
+  font-weight: 500;
+  color: rgba(74, 70, 60, 0.8);
+}
+
+h2.titulo-tarjeta {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.5rem;
+  margin-top: 0.75rem;
+  color: rgba(74, 70, 60, 0.9);
+}
+
+.texto-regalo {
+  max-width: 24rem;
+  margin: 1rem auto 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.25rem;
+  line-height: 1.625;
+  color: rgba(74, 70, 60, 0.85);
+}
+
+/* Layout de eventos: iglesia + fiesta */
+.events-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .events-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* ===== Secreto escondido ===== */
+.secreto-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(74, 70, 60, 0.55);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  z-index: 60;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.secreto-overlay[hidden] {
+  display: none;
+}
+
+.secreto-overlay.mostrar {
+  opacity: 1;
+}
+
+.secreto-box {
+  position: relative;
+  width: 100%;
+  max-width: 22rem;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(179, 146, 79, 0.6);
+  background: linear-gradient(180deg, rgba(255, 253, 248, 0.98), rgba(250, 245, 234, 0.98));
+  padding: 2.25rem 1.75rem 2rem;
+  text-align: center;
+  box-shadow: 0 25px 60px -20px rgba(80, 60, 20, 0.55);
+  transform: scale(0.92) translateY(10px);
+  transition: transform 0.35s ease;
+  overflow: hidden;
+}
+
+.secreto-overlay.mostrar .secreto-box {
+  transform: scale(1) translateY(0);
+}
+
+.secreto-cerrar {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.9rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.secreto-corazon {
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: 0 auto 0.5rem;
+}
+
+.secreto-pregunta {
+  font-size: 1.85rem;
+  margin: 0.4rem 0 1.4rem;
+  line-height: 1.2;
+}
+
+.secreto-input {
+  width: 100%;
+  border: 1px solid var(--gold-soft);
+  background: rgba(247, 242, 231, 0.7);
+  border-radius: 9999px;
+  padding: 0.75rem 1.25rem;
+  text-align: center;
+  font-family: "Montserrat", ui-sans-serif, sans-serif;
+  font-size: 0.9rem;
+  color: var(--ink);
+  outline: none;
+}
+
+.secreto-input:focus {
+  border-color: var(--gold);
+}
+
+.secreto-btn {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.secreto-error {
+  margin-top: 0.9rem;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: #a9713f;
+}
+
+@keyframes secreto-shake-kf {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-4px); }
+  40%, 60% { transform: translateX(4px); }
+}
+
+.secreto-shake {
+  animation: secreto-shake-kf 0.45s;
+}
+
+.secreto-mensaje {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgba(74, 70, 60, 0.9);
+  margin-top: 0.35rem;
+}
+
+.secreto-firma {
+  font-size: 2.25rem;
+  margin-top: 1rem;
+}
+
+.secreto-confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confetti-heart {
+  position: absolute;
+  top: -1.5rem;
+  animation-name: confetti-fall;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes confetti-fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateY(340px) rotate(220deg); opacity: 0; }
+}
